@@ -24,6 +24,11 @@ client.on("message", async (msg) => {
                 if (data.question == "") return console.log("test");
                 if (isHave) {
                     db.find(e => e.question === data.question).aswer.push(data.aswer)
+                    fs.writeFileSync("./db.json", JSON.stringify(db, null, 4))
+                    data = {
+                        question: msg.content + '\n',
+                        aswer: ""
+                    }
                     console.log("[logs] add answer!")
                 }
                 else {
